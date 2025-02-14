@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../Context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Container,  Form, Button, Alert } from 'react-bootstrap';
+import { Container,  Form, Alert } from 'react-bootstrap';
 
 
 
@@ -158,17 +158,16 @@ export const Signup = () => {
                         custom={4}
                         className="d-grid gap-2"
                     >
-                        <Button
-                            variant="primary"
+                        {/* Plain HTML button with Framer Motion */}
+                        <motion.button
                             type="submit"
-                            as={motion.button}
+                            className="btn btn-primary btn-lg"  // Manual Bootstrap classes
                             variants={buttonVariants}
                             whileHover="hover"
                             whileTap="tap"
-                            size="lg"
                         >
                             Sign Up
-                        </Button>
+                        </motion.button>
                     </motion.div>
                 </Form>
 

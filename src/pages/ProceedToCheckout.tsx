@@ -7,7 +7,7 @@ import { useCart } from "../Context/CartContext";
 import Footer from "../Components/Footer";
 import Navbr from "../Components/Navbar";
 import { useLocation, useNavigate } from 'react-router-dom';
-import { GetCartItemDTO, clearCart } from "../api/cart";
+import { GetCartItemDTO } from "../api/cart";
 
 // Animation variants
 const containerVariants = {

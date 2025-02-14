@@ -13,7 +13,7 @@ import {
     FormControl
 } from "react-bootstrap";
 import {
-    GetCartDTO,
+    //GetCartDTO,
     GetCartItemDTO,
     getCartByUserId,
     getCartItemsByCartId,
@@ -43,7 +43,7 @@ const itemVariants = {
 export default function UserCart() {
     const { user } = useAuth();
     const { refreshCart } = useCart();
-    const [cart, setCart] = useState<GetCartDTO | null>(null);
+    //const [cart, setCart] = useState<GetCartDTO | null>(null);
     const [cartItems, setCartItems] = useState<GetCartItemDTO[]>([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
@@ -52,7 +52,7 @@ export default function UserCart() {
 
         try {
             const cartData = await getCartByUserId(Number(user.id));
-            setCart(cartData);
+            //setCart(cartData);
 
             if (cartData?.id) {
                 const itemsData = await getCartItemsByCartId(cartData.id);
@@ -76,7 +76,7 @@ export default function UserCart() {
                 setCartItems(prev => prev.filter(i => i.id !== item.id));
                 refreshCart();
             } else {
-                const updatedItem = await updateCartItem(item.id, {
+                 await updateCartItem(item.id, {
                     ...item,
                     quantity: newQuantity
                 });

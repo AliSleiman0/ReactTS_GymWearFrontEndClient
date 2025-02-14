@@ -42,7 +42,7 @@ export const getOrders = async (): Promise<GetOrderDTO[]> => {
     }
 };
 
-export const getOrderById = async (id: number): Promise<Order> => {
+export const getOrderById = async (id: number): Promise<GetOrderDTO> => {
     const url = `/Order/order/${id}`;
     try {
         const response = await api.get(url);

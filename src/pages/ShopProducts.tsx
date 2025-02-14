@@ -4,10 +4,10 @@ import FilterSideBar from "../Components/FilterSideBar";
 import Navbr from "../Components/Navbar";
 import ProductModal from "../Components/ProductModal";
 import Footer from "../Components/Footer";
-import { ProductCardProps } from "../Components/ProductCard";
+//import { ProductCardProps } from "../Components/ProductCard";
 import { ProductCardDTO, getProductsGender } from "../api/product";
 import { GetCategoryDTO } from "../api/categories";
-import { useLocation, useParams } from "react-router-dom";
+import { useLoaderData, useLocation, useParams } from "react-router-dom";
 
 export interface Card {
     id: number;
@@ -23,12 +23,16 @@ export interface ShopProductsProp {
     categories: GetCategoryDTO[];
 }
 
-const ShopProducts: React.FC<ShopProductsProp> = ({ categories}) => {
+const ShopProducts = () => {
     // product data
-    const { gender } = useParams(); 
+    const { categories } = useLoaderData() as { categories: GetCategoryDTO[] };
+    const { gender } = useParams<{ gender?: string }>();
+
+
+    const genderNumber = gender ? Number(gender) || 0 : 0;
     const [genderProducts, setGenderProducts] = useState<ProductCardDTO[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
+    //const [error, setError] = useState<string | null>(null);
     const [modalShow, setModalShow] = useState<boolean>(false);
 
     // modal and filtering
@@ -41,18 +45,18 @@ const ShopProducts: React.FC<ShopProductsProp> = ({ categories}) => {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
     // cart and favorites
-    const [cart, setCart] = useState<ProductCardProps[]>([]);
-   
+    //const [cart, setCart] = useState<ProductCardProps[]>([]);
+
 
     // fetch products by gender
     const fetchProductsByGender = async () => {
         try {
             setLoading(true);
-            setError(null);
-            const genderFilteredProducts = await getProductsGender(gender);
+            //setError(null);
+            const genderFilteredProducts = await getProductsGender(genderNumber);
             setGenderProducts(genderFilteredProducts);
         } catch (error) {
-            setError("Error fetching products by gender.");
+            //setError("Error fetching products by gender.");
         } finally {
             setLoading(false);
         }
@@ -81,17 +85,17 @@ const ShopProducts: React.FC<ShopProductsProp> = ({ categories}) => {
     }));
 
     // handle changes for cart and favorites
-    const handleAddToCart = (product: ProductCardProps) => {
-        setCart(prev => {
-            if (prev.some(item => item.id === product.id)) {
-                return prev.filter(item => item.id !== product.id);
-            } else {
-                return [...prev, product];
-            }
-        });
-    };
+    //const handleAddToCart = (product: ProductCardProps) => {
+    //    setCart(prev => {
+    //        if (prev.some(item => item.id === product.id)) {
+    //            return prev.filter(item => item.id !== product.id);
+    //        } else {
+    //            return [...prev, product];
+    //        }
+    //    });
+    //};
 
-    
+
 
     // Handle filter input changes
     const handleInputChange = (value: string) => setQueryString(value.toLowerCase());
@@ -169,17 +173,17 @@ const ShopProducts: React.FC<ShopProductsProp> = ({ categories}) => {
                     handleSortDesc={handleSortDesc}
                     handleSizeChange={handleSizeChange}
                     handleCategoryChange={handleCategoryChange}
-                    Title={gender == 1 ? "MEN" : "WOMEN"}
+                    Title={genderNumber == 1 ? "MEN" : "WOMEN"}
                     Categories={categories}
-                    ProductsNumber={genderProducts.length }
+                    ProductsNumber={genderProducts.length}
                 />
                 {loading && <p>Loading products...</p>}
                 {!loading && genderProducts.length === 0 && <p>No products found.</p>}
                 <CardsGrid
                     cardData={filteredItems}
-                    handleCardClick={handleCardClick}
-                   
-                    handleAddToCart={handleAddToCart}
+
+
+
                 />
             </div>
 

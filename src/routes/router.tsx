@@ -5,11 +5,11 @@ import ShopProducts from "../pages/ShopProducts";
 import { getCategories } from "../api/categories";
 
 
-const Categories = await getCategories();
+
 //import { useParams } from "react-router-dom";
 import { Signin } from "../pages/Signin";
-import OurTeam from "../pages/ OurTeam";
-import PrivacyPolicy from "../pages/ PrivacyPolicy";
+import OurTeam from "../pages/OurTeam";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
 import TermsOfService from "../pages/TermsOfService";
 import UserAccount from "../pages/UserAccount";
 import UserOrders from "../pages/UserOrders";
@@ -21,7 +21,9 @@ import OrderConfirmation from "../pages/OrderConfirmation";
 //    const { gender } = useParams();
 //    return <ShopProducts categories={Categories} gender={Number(gender)} />;
 //};
-
+//const Categories = await (async () => {
+//    return await getCategories();
+//})();
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -29,7 +31,11 @@ export const router = createBrowserRouter([
     },
     {
         path: 'shopproducts/:gender',
-        element: <ShopProducts categories={Categories} />,
+        element: <ShopProducts  />,
+        loader: async () => {
+            const categories = await getCategories();
+            return { categories }; // Pass fetched data to the component
+        },
     },
     {
         path: 'auth',

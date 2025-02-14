@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { Container, Table } from 'react-bootstrap';
 import Navbr from '../Components/Navbar';
 import Footer from '../Components/Footer';
@@ -66,7 +66,7 @@ const UserOrders = () => {
                                 {/* Display the order id */}
                                 <td>{order.id}</td>
                                 {/* Format the date to a readable format */}
-                                <td>{new Date(order.orderDate).toLocaleDateString()}</td>
+                                <td>{new Date(order.createdAt).toLocaleDateString()}</td>
                                 {/* Use the length of orderProducts as the items count */}
                                 <td>{order.orderProducts?.length || 0}</td>
                                 {/* Format the total amount to 2 decimal places */}

@@ -1,13 +1,9 @@
-
-import { Navigation, A11y } from 'swiper/modules';
-
+import  Navigation from 'swiper';
+import   A11y  from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+
+import 'swiper/swiper-bundle.min.css';
 import { Card } from 'react-bootstrap';
 import ButtonShop from './ButtonShop';
 

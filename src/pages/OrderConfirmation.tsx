@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Container, Alert, Button } from 'react-bootstrap';
-import { GetOrderDTO, getOrderById } from '../api/orders';
+//import { GetOrderDTO, getOrderById } from '../api/orders';
 import { clearCart, getCartByUserId } from '../api/cart';
 import { useAuth } from '../Context/AuthContext';
 import { useCart } from '../Context/CartContext';
@@ -10,15 +10,15 @@ import { useCart } from '../Context/CartContext';
 export default function OrderConfirmation() {
     const { orderId } = useParams();
     const navigate = useNavigate();
-    const [order, setOrder] = useState<GetOrderDTO | null>(null);
+    
     const [loading, setLoading] = useState(true);
     const { user } = useAuth();
     const { refreshCart } = useCart();
     useEffect(() => {
         const fetchOrder = async () => {
             try {
-                const orderData = await getOrderById(Number(orderId));
-                setOrder(orderData);
+                //const orderData = await getOrderById(Number(orderId));
+                //setOrder(orderData);
                 const cart = await getCartByUserId(Number(user?.id));
                 if (!cart) {
                     // Handle case where no cart exists

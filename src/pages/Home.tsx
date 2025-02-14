@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css';
 import Navbr from '../Components/Navbar';
 import WelcomeBanner from '../Components/WelcomeBanner';
-import 'swiper/css';
+
 import CaourselCategories from '../Components/CustomCarousel';
 
 import Footer from '../Components/Footer';
