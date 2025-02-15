@@ -6,7 +6,7 @@ import { ProductCardDTO } from "../api/product";
 // Define props for ResponsiveCards
 interface ResponsiveCardsProps {
     cardData: ProductCardDTO[];
-    handleCardClick: () => void;
+    handleCardClick: (id: number) => void;
 
 
 }
