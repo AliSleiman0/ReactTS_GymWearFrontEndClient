@@ -179,7 +179,7 @@ export const Signup = () => {
                 >
                     <span className="text-muted">
                         Already have an account?{' '}
-                        <Link to="/signin" className="text-decoration-none">
+                        <Link to="../signin" className="text-decoration-none">
                             Login here
                         </Link>
                     </span>
