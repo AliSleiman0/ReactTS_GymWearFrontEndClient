@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const login = async (email: string, password: string) => {
         try {
             const { data } = await axios.post<{ userInfo: User; token: string }>(
-                'https://localhost:7250/api/user/auth/login',
+                'https://beastfitwearapi.azurewebsites.net/api/user/auth/login',
                 { email, password }
             );
             localStorage.setItem('accessToken', data.token);
@@ -84,7 +84,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const signup = async (signupData: SignupData) => {
         try {
             const { data } = await axios.post<{ user: User; accessToken: string }>(
-                'https://localhost:7250/api/user/auth/signup',
+                'https://beastfitwearapi.azurewebsites.net/api/user/auth/signup',
                 signupData
             );
             localStorage.setItem('accessToken', data.accessToken);
