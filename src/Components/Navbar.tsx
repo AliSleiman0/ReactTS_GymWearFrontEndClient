@@ -80,13 +80,8 @@ function Navbr() {
                             title={<span style={{ color: 'white' }}>Profile</span>}
                             id="collapsible-nav-dropdown"
                         >
-                            <NavDropdown.Item
-                                onClick={() => navigate("/user/UserAccount")}
-                                style={{ cursor: 'pointer' }}
-                            >
-                                My Account
-                            </NavDropdown.Item>
-                            <NavDropdown.Divider />
+                         
+                           
                             <NavDropdown.Item
                                 onClick={() => navigate("/user/UserOrders")}
                                 style={{ cursor: 'pointer' }}
