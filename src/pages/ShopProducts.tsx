@@ -64,6 +64,7 @@ const ShopProducts = () => {
 
     // Handle card click to show modal
     const handleCardClick = (id: number) => {
+        console.error("handleCardClick received ", id);
         if (!id) {
             console.error("handleCardClick received undefined id");
             return;
@@ -181,7 +182,7 @@ const ShopProducts = () => {
                 {!loading && genderProducts.length === 0 && <p>No products found.</p>}
                 <CardsGrid
                     cardData={filteredItems}
-
+                    handleCardClick={handleCardClick }
 
 
                 />

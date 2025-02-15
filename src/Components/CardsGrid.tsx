@@ -1,18 +1,18 @@
 import { Container, Row, Col } from "react-bootstrap";
 import ProductCard from "./ProductCard";
-import {  ProductCardDTO } from "../api/product";
+import { ProductCardDTO } from "../api/product";
 
 
 // Define props for ResponsiveCards
- interface ResponsiveCardsProps {
-     cardData: ProductCardDTO[];
-   
-    
-  
+interface ResponsiveCardsProps {
+    cardData: ProductCardDTO[];
+    handleCardClick: () => void;
+
+
 }
 
 // ResponsiveCards Component
-const CardsGrid: React.FC<ResponsiveCardsProps> = ({ cardData }) => {
+const CardsGrid: React.FC<ResponsiveCardsProps> = ({ cardData, handleCardClick }) => {
     return (
         <Container className="mt-2">
             <Row>
@@ -25,8 +25,8 @@ const CardsGrid: React.FC<ResponsiveCardsProps> = ({ cardData }) => {
                             title={card.title}
                             oldPrice={card.oldPrice}
                             newPrice={card.newPrice}
-                            
-                          
+                            handleCardClick={handleCardClick }
+
                         />
                     </Col>
                 ))}

@@ -13,15 +13,17 @@ export interface ProductCardProps {
     oldPrice: number;
     newPrice: number;
     background: string;
+    handleCardClick: (id:number) => void;
 }
 
 // ProductCard Component
 
-const Card = ({ id, background, title, oldPrice, newPrice}: ProductCardProps) => {
+const Card = ({ id, background, title, oldPrice, newPrice, handleCardClick }: ProductCardProps) => {
     const [isHovered, setIsHovered] = useState(false);
     return (
         <motion.section
             className="card"
+            onClick={() => handleCardClick(id)}
             data-id={id}
             whileHover={{ scale: 1.05 }}
             style={{ position: "relative", cursor: "pointer" }}
