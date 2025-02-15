@@ -144,7 +144,7 @@ export const Signin = () => {
                 >
                     <span className="text-muted">
                         Don't have an account?{' '}
-                        <Link to="/signup" className="text-decoration-none">
+                        <Link to="/auth/signup" className="text-decoration-none">
                             Sign up here
                         </Link>
                     </span>
