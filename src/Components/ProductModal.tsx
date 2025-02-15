@@ -126,7 +126,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ show, onHide, modalCardData
 
                             <motion.div className="mt-4" whileTap={{ scale: 0.95 }}>
                                 <Button variant="primary" onClick={handleAddToCart} style={{ background: "linear-gradient(to right, #000000, #333333)" }} disabled={isInCart || loading} >
-                                    <BsFillBagFill /> {isInCart ? 'Item in Cart' : loading ? 'Adding...' : 'Add to Cart'}
+                                    <BsFillBagFill /> {isInCart ? 'Item in Cart' : loading ? 'Loading...' : 'Add to Cart'}
                                 </Button>
                             </motion.div>
                         </Col>

@@ -1,7 +1,7 @@
+﻿
 
 
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
 import { motion } from "framer-motion";
@@ -9,8 +9,8 @@ import { GetCategoryDTO } from "../api/categories";
 interface FilterSideBarProps {
     handleInputChange: (value: string) => void;
     handleColorChange: (color: string, isChecked: boolean) => void;
-    handleSortAsc: () => void; 
-    handleSortDesc: () => void; 
+    handleSortAsc: () => void;
+    handleSortDesc: () => void;
     handleSizeChange: (size: string, isChecked: boolean) => void;
     handleCategoryChange: (category: string, isChecked: boolean) => void;
     Title: string;
@@ -21,7 +21,28 @@ interface FilterSideBarProps {
 
 const FilterSideBar: React.FC<FilterSideBarProps> = ({ handleInputChange, handleColorChange, handleSortAsc, handleSortDesc, handleSizeChange, handleCategoryChange, Title, Categories, ProductsNumber }) => {
     //design states
+    const [isMobile, setIsMobile] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const [activeSection, setActiveSection] = useState<string>("");
+
+    // Detect screen size
+    useEffect(() => {
+        const checkMobile = () => {
+            const mobile = window.innerWidth < 992;
+            setIsMobile(mobile);
+            setIsOpen(!mobile); // Open on desktop, close on mobile
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Auto-close sidebar on mobile when screen resizes to desktop
+    useEffect(() => {
+        if (!isMobile) setIsOpen(true);
+    }, [isMobile]);
+
+
 
     const toggleSection = (section: string): void => {
         setActiveSection((prev) => (prev === section ? "" : section));
@@ -35,9 +56,55 @@ const FilterSideBar: React.FC<FilterSideBarProps> = ({ handleInputChange, handle
 
 
     return (
-        <>
 
-            <div className="p-3 product-filter pl-4 rounded" style={{minHeight:"100vh!important"} }>
+
+        <>
+            {/* Mobile Toggle Button */}
+            {isMobile && (
+                <>
+                    {isMobile ? <><br /><br /><br /></> : null}
+                <Button
+                    variant="primary"
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="position-fixed d-lg-none mt-5"
+                    style={{
+                        zIndex: 1001,
+                        top: '1rem',
+                        left: '1rem',
+                    }}
+                >
+                    {isOpen ? '✕ Close' : '☰ Filters'}
+                    </Button>
+
+                    </>
+            )}
+
+            {/* Sidebar Content */}
+            <motion.div
+                className="p-3 product-filter pl-4 rounded"
+                style={{
+                    minHeight: "100vh",
+                    position: isMobile ? 'fixed' : 'sticky',
+                    top: '1rem',
+                    left: 0,
+                    width: isMobile ? '280px' : '100%',
+                    zIndex: 1000,
+                    backgroundColor: '#f8f9fa',
+                    marginRight: '1rem',
+                    height: isMobile ? '100vh' : 'auto',
+                    overflowY: 'auto'
+                }}
+                initial={false}
+
+                animate={{
+                    x: isMobile ? (isOpen ? 0 : -300) : 0,
+                    boxShadow: isMobile && isOpen ? '4px 0 15px rgba(0,0,0,0.1)' : 'none',
+                    opacity: isMobile ? 1 : 1 // Fix for desktop flickering
+                }}
+                transition={{ type: 'tween', duration: 0.3 }}
+            >
+                {isMobile ? <><br /><br /><br /></> : null}
+
                 {/* Header */}
                 <h5>{Title}'s</h5>
                 <h1 className="fw-bold">PRODUCTS</h1>
@@ -49,9 +116,9 @@ const FilterSideBar: React.FC<FilterSideBarProps> = ({ handleInputChange, handle
                     <Form.Control
                         type="text"
                         placeholder="Search products in this page..."
-                        
+
                         onChange={(e) => handleInputChange(e.target.value)}
-                        
+
                     />
                 </Form.Group>
                 <hr />
@@ -125,7 +192,7 @@ const FilterSideBar: React.FC<FilterSideBarProps> = ({ handleInputChange, handle
                                     >
                                         <input
                                             type="checkbox"
-                                            
+
                                             name="color"
                                             value={color}
                                             style={{ display: "none" }}
@@ -220,7 +287,21 @@ const FilterSideBar: React.FC<FilterSideBarProps> = ({ handleInputChange, handle
                         </motion.div>
                     </div>
                 </div>
-            </div>
+
+            </motion.div>
+            {isMobile && isOpen && (
+                <div
+                    className="position-fixed bg-dark opacity-50"
+                    style={{
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        zIndex: 999,
+                    }}
+                    onClick={() => setIsOpen(false)}
+                />
+            )}
         </>
     );
 }
