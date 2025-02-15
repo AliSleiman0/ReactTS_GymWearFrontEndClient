@@ -62,7 +62,7 @@ const FilterSideBar: React.FC<FilterSideBarProps> = ({ handleInputChange, handle
             {/* Mobile Toggle Button */}
             {isMobile && (
                 <>
-                    {isMobile ? <><br /><br /><br /></> : null}
+                    
                 <Button
                     variant="primary"
                     onClick={() => setIsOpen(!isOpen)}
@@ -70,7 +70,7 @@ const FilterSideBar: React.FC<FilterSideBarProps> = ({ handleInputChange, handle
                     style={{
                         zIndex: 1001,
                         top: '1rem',
-                        left: '1rem',
+                        right: '1rem',
                     }}
                 >
                     {isOpen ? '✕ Close' : '☰ Filters'}
@@ -81,9 +81,9 @@ const FilterSideBar: React.FC<FilterSideBarProps> = ({ handleInputChange, handle
 
             {/* Sidebar Content */}
             <motion.div
-                className="p-3 product-filter pl-4 rounded"
+                className=" p-3 product-filter pl-4 rounded"
                 style={{
-                    minHeight: "100vh",
+                    minHeight: "100vh!important",
                     position: isMobile ? 'fixed' : 'sticky',
                     top: '1rem',
                     left: 0,
@@ -103,8 +103,8 @@ const FilterSideBar: React.FC<FilterSideBarProps> = ({ handleInputChange, handle
                 }}
                 transition={{ type: 'tween', duration: 0.3 }}
             >
-                {isMobile ? <><br /><br /><br /></> : null}
-
+                
+                {isMobile ? <><br /><br /></> : null}
                 {/* Header */}
                 <h5>{Title}'s</h5>
                 <h1 className="fw-bold">PRODUCTS</h1>

@@ -1,4 +1,4 @@
-//import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -15,33 +15,40 @@ function Navbr() {
 
     const { cartCount } = useCart();
 
+    const currentUrl = window.location.href;
 
-    //const [top, settop] = useState('fixed-top');
-    //useEffect(() => {
-    //    const handleScroll = () => {
-    //        if (window.scrollY > 600) {
+    // Get specific parts of the URL
+    const pathname = window.location.pathname;
+    const isHome = pathname === "/";
+    const [top, setTop] = useState('fixed-top');
+   
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 600) {
 
-    //            settop('');
-    //        } else {
+                setTop('');
+               
+            } else {
 
-    //            settop('fixed-top');
-    //        }
+                setTop('fixed-top');
+            }
 
-    //    };
+        };
 
-    //    window.addEventListener('scroll', handleScroll);
-
-    //    // Cleanup the event listener on unmount
-    //    return () => {
-    //        window.removeEventListener('scroll', handleScroll);
-    //    };
-    //}, []);
+        window.addEventListener('scroll', handleScroll);
+        console.log(currentUrl);
+        console.log(pathname);
+        // Cleanup the event listener on unmount
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
 
     const navigate = useNavigate();
     return (
         <Navbar
-            className="fixed-top"
+            className={isHome ?  top  : "fixed-top"}
             collapseOnSelect
             expand="lg"
             style={{
