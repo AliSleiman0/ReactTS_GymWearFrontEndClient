@@ -41,7 +41,7 @@ function Navbr() {
     const navigate = useNavigate();
     return (
         <Navbar
-            className={top}
+            className="fixed-top"
             collapseOnSelect
             expand="lg"
             style={{
