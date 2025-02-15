@@ -16,26 +16,26 @@ function Navbr() {
     const { cartCount } = useCart();
 
 
-    const [top, settop] = useState('fixed-top');
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 600) {
+    //const [top, settop] = useState('fixed-top');
+    //useEffect(() => {
+    //    const handleScroll = () => {
+    //        if (window.scrollY > 600) {
 
-                settop('');
-            } else {
+    //            settop('');
+    //        } else {
 
-                settop('fixed-top');
-            }
+    //            settop('fixed-top');
+    //        }
 
-        };
+    //    };
 
-        window.addEventListener('scroll', handleScroll);
+    //    window.addEventListener('scroll', handleScroll);
 
-        // Cleanup the event listener on unmount
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
+    //    // Cleanup the event listener on unmount
+    //    return () => {
+    //        window.removeEventListener('scroll', handleScroll);
+    //    };
+    //}, []);
 
 
     const navigate = useNavigate();
