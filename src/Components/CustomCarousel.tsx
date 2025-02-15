@@ -1,5 +1,5 @@
-import  Navigation from 'swiper';
-import   A11y  from 'swiper';
+
+import    {Navigation,A11y}  from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 
