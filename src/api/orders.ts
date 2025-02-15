@@ -24,7 +24,7 @@ export interface OrderProductDTO {
 export interface GetOrderDTO {
     id: number;
     userId: number;
-    createdAt: string;
+    orderDate: string;
     totalAmount: number;
     orderStatus: string;
     orderProducts: OrderProductDTO[];

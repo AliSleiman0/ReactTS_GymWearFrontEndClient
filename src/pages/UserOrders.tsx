@@ -20,6 +20,8 @@ const UserOrders = () => {
                 // Fetch orders for the current user.
                 const data = await getCustomerOrders(Number(user.id));
                 console.log(data);
+                //console.log(data[0].createdAt);
+                //console.log(new Date(data[0].createdAt).toLocaleDateString());
                 setOrders(data);
             } catch (error) {
                 console.error("Error fetching orders:", error);
@@ -66,7 +68,7 @@ const UserOrders = () => {
                                 {/* Display the order id */}
                                 <td>{order.id}</td>
                                 {/* Format the date to a readable format */}
-                                <td>{new Date(order.createdAt).toLocaleDateString()}</td>
+                                <td>{new Date(order.orderDate).toLocaleDateString()}</td>
                                 {/* Use the length of orderProducts as the items count */}
                                 <td>{order.orderProducts?.length || 0}</td>
                                 {/* Format the total amount to 2 decimal places */}
