@@ -59,7 +59,7 @@ export const Signup = () => {
                 password: formData.password,
                 confirmPassword: formData.confirmPassword
             });
-            navigate('/');
+            navigate('../signin');
         } catch (error: unknown) {
             if (error instanceof Error) {
                 setError((error as any).response?.data || 'Signup failed');
