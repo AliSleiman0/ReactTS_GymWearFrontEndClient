@@ -132,7 +132,7 @@ export const Signup = () => {
                             <Form.Label>Password</Form.Label>
                             <Form.Control
                                 type="password"
-                                placeholder="Pass (min 6 characters, 1 uppercase, 1 number, and 1 special char)"
+                                placeholder="Pass (min 6 char, 1 uppercase, 1 number, and 1 special char)"
                                 required
                                 value={formData.password}
                                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
